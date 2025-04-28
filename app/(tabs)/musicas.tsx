@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, Linking } from 'react-native';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
 
 const musicasFavoritas = [
-  { id: '1', titulo: 'Matuê - Crack com Mussilon', capa:'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/photo_2024-09-09_19-33-30.png?raw=true', link: 'https://open.spotify.com/intl-pt/track/4ssHL7bSnOAE7HjiuLx6Co?si=5b2e7d2de15847b0' },
-  { id: '2', titulo: 'Franco The sir - Bater', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1179656-e-assim-que-funciona_142703.png?raw=true', link:'https://open.spotify.com/intl-pt/track/6yXWZScyOvoLvYU4idkPsz?si=8c954d00afd740f0' },
-  { id: '3', titulo: 'LPT Zlatan - To de volta', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/zlatan.png?raw=true', link:'https://open.spotify.com/intl-pt/track/2s7vtyL03FsuzbR2CXWIsc?si=7c7efa8ebdfd49ef' },
-  { id: '4', titulo: 'Alee - Passado de um vilão', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1083007-caos_035708.png?raw=true', link:'https://open.spotify.com/intl-pt/track/5gXH6r92zVkhgP1BF73J4b?si=2a7eb15dc2d74715'},
-  { id: '5', titulo: 'Link do zap - Ultima dança', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1189743-a-ultima-danca_190506.png?raw=true', link:'https://open.spotify.com/intl-pt/track/096gZM7wp5GKHBwtWY3d0z?si=9d61b179190a478d'},
-  { id: '6', titulo: 'Brandão - De volta', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/CEO-COVER-1.png?raw=true', link:'https://open.spotify.com/intl-pt/track/2fMm9PrJqhjphXdsNHNoQC?si=112117aa81b74a90'}
+  { id: '1', titulo: 'Matuê - Crack com Mussilon', capa:'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/photo_2024-09-09_19-33-30.png?raw=true', link: 'https://open.spotify.com/intl-pt/track/4ssHL7bSnOAE7HjiuLx6Co?si=5b2e7d2de15847b0', Sobre: '' },
+  { id: '2', titulo: 'Franco The sir - Bater', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1179656-e-assim-que-funciona_142703.png?raw=true', link:'https://open.spotify.com/intl-pt/track/6yXWZScyOvoLvYU4idkPsz?si=8c954d00afd740f0', sobre: '' },
+  { id: '3', titulo: 'LPT Zlatan - To de volta', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/zlatan.png?raw=true', link:'https://open.spotify.com/intl-pt/track/2s7vtyL03FsuzbR2CXWIsc?si=7c7efa8ebdfd49ef', sobre: '' },
+  { id: '4', titulo: 'Alee - Passado de um vilão', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1083007-caos_035708.png?raw=true', link:'https://open.spotify.com/intl-pt/track/5gXH6r92zVkhgP1BF73J4b?si=2a7eb15dc2d74715', sobre: ''},
+  { id: '5', titulo: 'Link do zap - Ultima dança', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/1189743-a-ultima-danca_190506.png?raw=true', link:'https://open.spotify.com/intl-pt/track/096gZM7wp5GKHBwtWY3d0z?si=9d61b179190a478d', sobre: ''},
+  { id: '6', titulo: 'Brandão - De volta', capa: 'https://github.com/DavydKennyd/imagens-para-projeto/blob/main/assets/CEO-COVER-1.png?raw=true', link:'https://open.spotify.com/intl-pt/track/2fMm9PrJqhjphXdsNHNoQC?si=112117aa81b74a90', sobre: 'CEO aborda as vivências do artista em Fortaleza–CE, cidade natal e também o momento atual da vida e carreira do trapper. Entre as participações especiais estão os parceiros de selo Matuê, Teto e WIU, além de Alee. O disco também recebeu visualizers para cada faixa.'}
 ];
 
 export default function PlaylistScreen() {
@@ -44,10 +45,21 @@ export default function PlaylistScreen() {
             onPress={() => {
                 Linking.openURL(musicaSelecionada.link)}}>
             <Text style={styles.linkBotao}>OUVIR ESSA AGORA</Text>
+            
           </TouchableOpacity>
             )}
-      
 
+        {musicaSelecionada.link && (
+
+            <Link href={{
+              pathname: "/sobreAlbuns",
+              params: {id: musicaSelecionada.id}
+            }} style={styles.botaoMusica}>
+              <Text style={styles.linkBotao}>SOBRE O ÁLBUM</Text>
+            </Link>
+  
+             )}
+    
 
           <Image source={{ uri: musicaSelecionada.capa }} style={styles.capaImagem} />
 
