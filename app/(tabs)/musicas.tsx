@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, Linking } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, Linking, ScrollView } from 'react-native';
 import { useState } from 'react';
 import { Link } from 'expo-router';
 
@@ -16,8 +16,14 @@ export default function PlaylistScreen() {
   const [musicaSelecionada, setMusicaSelecionada,] = useState<null | typeof musicasFavoritas[0]>(null);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>🔥Play-list trap🔥</Text>
+    <ScrollView 
+  style={styles.container} 
+  contentContainerStyle={{ paddingBottom: 30 }}
+  showsVerticalScrollIndicator={false} 
+  keyboardShouldPersistTaps="handled"
+>
+
+      <Text style={styles.titulo}>🔥Playist trap🔥</Text>
 
       <FlatList
         data={musicasFavoritas}
@@ -65,7 +71,7 @@ export default function PlaylistScreen() {
 
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
